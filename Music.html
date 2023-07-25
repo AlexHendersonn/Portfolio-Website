@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://kit.fontawesome.com/abe6d83a43.js" crossorigin="anonymous"></script>
+</head>
+<body class="index">
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="profile.html"> Home</a>
+    <a href="Weather Application.html">  Weather Application</a>
+    <a href="Music.html"> Music</a>
+    <a href="Chess.html"> Chess</a>
+    <a href="Commerce.html"> E-Commerce Store</a>
+    <a href="https://github.com/AlexHendersonn"> GitHub</a>
+    <a href="https://www.linkedin.com/in/alex-henderson-a4712b186/">LinkedIn</a>
+</div>
+
+<div id="menu">
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "275px";
+  document.getElementById("menu").style.marginLeft = "275px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("menu").style.marginLeft = "0";
+}
+</script>
+     
+<h1>Music Player</h1>
+
+<div class="music-container">
+    <div class="music-player">
+      <nav class="musicnav">
+        <div class="circle" onclick="prevSong()">
+          <i class="fa-solid fa-angle-left"></i>
+        </div>
+        <div class="circle">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </nav>
+      <img src="Media/thumbnail.jpg" class="song-img" id="songImg">
+      <h1 id="songTitle">Providence</h1>
+      <p id="songArtist">Foals</p>
+
+<audio controls id="song">
+  <source src="Media/Providence.mp3" type="audio/mpeg" id="songSrc">
+</audio>
+<input type="range" value="0" id="progress">
+
+<div class="controls">
+  <div onclick="prevSong()"><i class="fa-solid fa-backward"></i></div>
+  <div onclick="playPause()"><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
+  <div onclick="nextSong()"><i class="fa-solid fa-forward"></i></div>
+</div>
+    </div>
+  
+</div>
+    
+<script>
+
+let songs = [
+    { title: "Providence", artist: "Foals", src: "Media/Providence.mp3", img: "Media/thumbnail.jpg" },
+    { title: "Can't Stop", artist: "Red Hot Chili Peppers", src: "Media/Can't stop.mp3", img: "Media/thumbnail2.jpg" },
+    { title: "Isn't she lovely", artist: "Stevie Wonder", src: "Media/Lovely.mp3", img: "Media/thumbnail3.jpg" }
+    // add more songs here...
+];
+let currentSongIndex = 0;
+
+let progress = document.getElementById("progress");
+let song = document.getElementById("song");
+let songSrc = document.getElementById("songSrc");
+let songImg = document.getElementById("songImg");
+let songTitle = document.getElementById("songTitle");
+let songArtist = document.getElementById("songArtist");
+let ctrlIcon = document.getElementById("ctrlIcon");
+
+function loadSong() {
+    songSrc.src = songs[currentSongIndex].src;
+    songImg.src = songs[currentSongIndex].img;
+    songTitle.innerText = songs[currentSongIndex].title;
+    songArtist.innerText = songs[currentSongIndex].artist;
+    song.load();
+    ctrlIcon.classList.remove("fa-pause");
+    ctrlIcon.classList.add("fa-play");
+}
+
+song.onloadedmetadata = function(){
+  progress.max = song.duration;
+  progress.value = song.currentTime;
+}
+
+function playPause() {
+    if(ctrlIcon.classList.contains("fa-pause")){
+        song.pause();
+        ctrlIcon.classList.remove("fa-pause");
+        ctrlIcon.classList.add("fa-play");
+    } else {
+        song.play();
+        ctrlIcon.classList.add("fa-pause");
+        ctrlIcon.classList.remove("fa-play");
+    }
+}
+
+function nextSong() {
+    currentSongIndex++;
+    if (currentSongIndex > songs.length - 1) {
+        currentSongIndex = 0;
+    }
+    loadSong();
+}
+
+function prevSong() {
+    currentSongIndex--;
+    if (currentSongIndex < 0) {
+        currentSongIndex = songs.length - 1;
+    }
+    loadSong();
+}
+
+if(song.play()){
+  setInterval(()=>{
+    progress.value = song.currentTime;
+  },500)
+}
+
+progress.onchange = function(){
+  song.play();
+  song.currentTime = progress.value;
+  ctrlIcon.classList.add("fa-pause");
+  ctrlIcon.classList.remove("fa-play");
+}
+loadSong();
+</script>
+</body>
+</html>

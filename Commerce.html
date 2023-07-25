@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+    <meta charset="UTF-8">
+    <title>Ecommerce Website Design</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="commerce" >
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="profile.html"> Home</a>
+        <a href="Weather Application.html">  Weather Application</a>
+        <a href="Music.html"> Music</a>
+        <a href="Chess.html"> Chess</a>
+        <a href="Commerce.html"> E-Commerce Store</a>
+        <a href="https://github.com/AlexHendersonn"> GitHub</a>
+        <a href="https://www.linkedin.com/in/alex-henderson-a4712b186/">LinkedIn</a>
+      </div>
+    
+    <div id="menu">
+      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+    </div>
+    
+    <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "300px";
+      document.getElementById("menu").style.marginLeft = "300px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("menu").style.marginLeft = "0";
+    }
+    </script>
+
+<div class="header">
+
+
+    <div class="containerc">
+        <div class="navbar">
+            <div class="logo">
+                <img src="Commerce_Images/ThreadsByAlex-logos_black.png" width="175px">
+            </div>
+            <nav class="nav">
+                <ul id="MenuItems">
+                    <li><a href="Commerce.html">Home</a></li>
+                    <li><a href="Products.html">Products</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contact</a></li>
+                    <li><a href="">Account</a></li>
+                </ul>
+            </nav>
+            <img src="Commerce_Images/cart.png" class="cart-icon" width="30px" height="30px">
+            <img src="Commerce_Images/menu.png" class = "menu-icon" onclick="menutoggle()">
+        </div>
+            <div class="row">
+                <div class="col-2">
+                    <h1>Give Your Daily Routine<br> A New Style!</h1>
+                    <p>Success isn't always about greatness. It's about consistency. Consistant<br> hard work gains success. Greatness will come.</p>
+                    <a href="" class="btn">Explore Now &#8594;</a>
+                </div>
+                <div class="col-2">
+                    <img src="Commerce_Images/Frontpage.png">
+                </div>
+        </div>
+    </div>
+</div>
+
+<!-----Featured Catagories------>
+<div class="categories">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-3">
+                <img src="Commerce_Images/category-1.jpg">
+            </div>
+            <div class="col-3">
+                <img src="Commerce_Images/category-2.jpg">
+            </div>
+            <div class="col-3">
+                <img src="Commerce_Images/category-3.jpg">
+            </div>
+        </div>
+    </div>
+    
+</div>
+<!-----Featured Products------>
+<div class="small-container">
+    <h2 class="title">Featured Products</h2>
+    <div class="row">
+        <div class="col-4">
+            <img src="Commerce_Images/product-1.jpg">
+            <h4>Red Printed T-Shirt</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>£30.00</p>
+        </div>
+        <div class="col-4">
+            <img src="Commerce_Images/product-2.jpg">
+            <h4>Trainers</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+            <p>£25.00</p>
+        </div>
+        <div class="col-4">
+            <img src="Commerce_Images/product-3.jpg">
+            <h4>Gym Jogging Bottoms</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>£20.00</p>
+        </div>
+        <div class="col-4">
+            <img src="Commerce_Images/product-4.jpg">
+            <h4>Polo Shirt</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            <p>£35.00</p>
+        </div>
+    </div>
+    <h2 class="title">Latest Products</h2>
+    <div class="row">
+        <div class="col-4">
+            <img src="Commerce_Images/product-5.jpg">
+            <h4>Grey Trainers</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>£22.00</p>
+        </div>
+        <div class="col-4">
+            <img src="Commerce_Images/product-6.jpg">
+            <h4>Gym T-Shirt</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>£18.00</p>
+        </div>
+        <div class="col-4">
+            <img src="Commerce_Images/product-7.jpg">
+            <h4>Gym Socks</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>£10.00</p>
+        </div>
+        <div class="col-4">
+            <img src="Commerce_Images/product-8.jpg">
+            <h4>Fossil Watch</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            <p>£50.00</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <img src="Commerce_Images/product-9.jpg">
+            <h4>Sports Watch</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>£45.00</p>
+        </div>
+        <div class="col-4">
+            <img src="Commerce_Images/product-10.jpg">
+            <h4>Gym Trainers</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>£40.00</p>
+        </div>
+        <div class="col-4">
+            <img src="Commerce_Images/product-11.jpg">
+            <h4>Comfort Shoes</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>£15.00</p>
+        </div>
+        <div class="col-4">
+            <img src="Commerce_Images/product-12.jpg">
+            <h4>Black Jogging Bottoms</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+            <p>£20.00</p>
+        </div>
+    </div>
+
+</div>
+<!-----Offer---->
+<div class="offer">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-2">
+                <img src="Commerce_Images/exclusive.png" class="offer-img">
+            </div>
+            <div class="col-2">
+                <p>Exclusively Available on ThreadsByAlex</p>
+                <h1>Smart Band 4</h1>
+                <small>The Mi Smart Band 4 features a 39.9% larger (than Mi Band 3) AMOLED color full-touch display with adjustable brightness, so everything is clear ad can be.</small>
+                <a href="" class="btn">Buy Now &#8594;</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!----Testimonials----->
+<<div class="testimonial">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-3">
+                <i class="fa fa-quote-left"></i>
+                <p>ThreadsByAlex is the go-to for trendy, sustainable clothing. Unparalleled in quality and style, a true gem in the fashion world!</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>
+                <img src="Commerce_Images/user-1.png">
+                <h3>Lisa Halliday</h3>
+            </div>
+            <div class="col-3">
+                <i class="fa fa-quote-left"></i>
+                <p>ThreadsByAlex provides a stellar shopping experience with its high-quality, stylish clothing and exceptional customer service. They stand out with inclusive sizing, eco-friendly practices, and a commitment to timely delivery. Truly a five-star fashion destination.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>
+                <img src="Commerce_Images/user-2.png">
+                <h3>Maurice Parker</h3>
+            </div>
+            <div class="col-3">
+                <i class="fa fa-quote-left"></i>
+                <p>ThreadsByAlex excels in offering chic, quality apparel. Its commitment to eco-friendly practices and inclusive sizing truly sets it apart. A top-notch fashion destination!</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>
+                <img src="Commerce_Images/user-3.png">
+                <h3>Charlotte Reed</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<!-----Footer------>
+<div class="footer">
+    <div class="containerc">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download Our App</h3>
+                <p>Download App for Android and ios mobile phone.</p>
+                <div class="app-logo">
+                    <img src="Commerce_Images/play-store.png">
+                    <img src="Commerce_Images/app-store.png">
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <img src="Commerce_Images/ThreadsByAlex-logos_white.png">
+                <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Clothing Accessible to the Many.</p>
+            </div>
+            <div class="footer-col-3">
+                <h3>Useful Links</h3>
+                <ul>
+                    <li>Coupons</li>
+                    <li>Blog Post</li>
+                    <li>Return Policy</li>
+                    <li>Join Affiliate</li>
+                </ul>
+            </div>
+            <div class="footer-col-4">
+                <h3>Follow us</h3>
+                <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>Instagram</li>
+                    <li>YouTube</li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">Copyright 2023 - Alex's Portfolio</p>
+    </div>
+</div>
+<!-----JS for Toggle Menu----->
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if(MenuItems.style.maxHeight == "0px"){
+
+                MenuItems.style.maxHeight = "200px"
+            }
+            else{
+                MenuItems.style.maxHeight = "0px"
+            }
+        }
+    </script>
+
+</body>
+</html>

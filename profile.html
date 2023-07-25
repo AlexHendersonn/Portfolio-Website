@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Profile</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+    </head>
+    <body>
+
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="profile.html"> Home</a>
+        <a href="Weather Application.html">  Weather Application</a>
+        <a href="Music.html"> Music</a>
+        <a href="Chess.html"> Chess</a>
+        <a href="Commerce.html"> E-Commerce Store</a>
+        <a href="https://github.com/AlexHendersonn"> GitHub</a>
+        <a href="https://www.linkedin.com/in/alex-henderson-a4712b186/">LinkedIn</a>
+      </div>
+    
+    <div id="menu">
+      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+    </div>
+    
+    <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "300px";
+      document.getElementById("menu").style.marginLeft = "300px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("menu").style.marginLeft = "0";
+    }
+    </script>
+
+        <div class="resume-wrapper">
+            <section class="profile section-padding">
+                <div class="containerp">
+                    <div class="picture-resume-wrapper">
+                        <div class="picture-resume">
+                            <span>
+                                <img src="Resources/Self.jpg" />
+                            </span>
+                            <svg version="1.1" viewBox="0 0 350 350">
+                                <defs>
+                                    <filter id="goo">
+                                        <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+                                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -9" result="cm" />
+                                    </filter>
+                                </defs>
+                                
+                            </svg>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="name-wrapper">
+                        <h1>Alex <br/>Henderson</h1>
+                    </div>
+                    <div class="clearfix"></div>
+      <div class="contact-info clearfix">
+      	<ul class="list-titles">
+      		<li>Call</li>
+      		<li>Mail</li>
+      		<li>Web</li>
+      		<li>Home</li>
+      	</ul>
+        <ul class="list-content ">
+        	<li>07841951755</li> <!-- YOUR PHONE NUMBER  -->
+        	<li>alex.henderson@gmx.co.uk</li> <!-- YOUR EMAIL -->
+        	<li><a href="#">Henderson.com</a></li> <!-- YOUR WEBSITE  -->
+        	<li>Reading, UK</li> <!-- YOUR STATE AND COUNTRY  -->
+        </ul>
+      </div>
+      <div class="contact-presentation"> <!-- YOUR PRESENTATION RESUME  -->
+      	<p><span class="bold">Lorem</span> ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod congue nisi, nec consequat quam. In consectetur faucibus turpis eget laoreet. Sed nec imperdiet purus. </p>
+      </div>
+      <div class="contact-social clearfix">
+      	<ul class="list-titles">
+      		<li>LinkedIn</li>
+      		<li>GitHub</li>
+      		<li>Facebook</li>
+      	</ul>
+        <ul class="list-content"> <!-- REMEMBER TO PUT THE URL ON THE HREF TAG  -->
+      		<li><a href="https://www.linkedin.com/in/alex-henderson-a4712b186/">Alex Henderson</a></li> <!-- YOUR TWITTER USER  -->
+      		<li><a href="https://github.com/AlexHendersonn">AlexHendersonn</a></li> <!-- YOUR DRIBBBLE USER  -->
+      		<li><a href="https://www.facebook.com/Alexhenderson123">Alex Henderson</a></li> <!-- YOUR BEHANCE USER  -->
+      	</ul>
+      </div>
+		</div>
+	</section>
+  
+  <section class="experience section-padding">
+  	<div class="containerp">
+  		<h3 class="experience-title">Experience</h3>
+      
+      <div class="experience-wrapper">
+      	<div class="company-wrapper clearfix">
+      		<div class="experience-title">Roc Search Limited</div> <!-- NAME OF THE COMPANY YOUWORK WITH  -->
+          <div class="time">Feb 2023 - Present</div> <!-- THE TIME YOU WORK WITH THE COMPANY  -->
+      	</div>
+        
+        <div class="job-wrapper clearfix">
+        	<div class="experience-title">Desktop Support Engineer </div> <!-- JOB TITLE  -->
+          <div class="company-description">
+          	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>  <!-- JOB DESCRIPTION  -->
+          </div>
+        </div>
+        
+        <div class="company-wrapper clearfix">
+      		<div class="experience-title">Ward & Co</div> <!-- NAME OF THE COMPANY YOUWORK WITH  -->
+          <div class="time">Nov 2010 - Present</div> <!-- THE TIME YOU WORK WITH THE COMPANY  -->
+      	</div>
+        
+         <div class="job-wrapper clearfix">
+        	<div class="experience-title">Carpenter</div> <!-- JOB TITLE  -->
+          <div class="company-description">
+          	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>  <!-- JOB DESCRIPTION  -->
+          </div>
+        </div>
+        
+        <div class="company-wrapper clearfix">
+      		<div class="experience-title">Greenacres</div> <!-- NAME OF THE COMPANY YOUWORK WITH  -->
+          <div class="time">Nov 2009 - Nov 2010</div> <!-- THE TIME YOU WORK WITH THE COMPANY  -->
+      	</div> 
+        
+         <div class="job-wrapper clearfix">
+        	<div class="experience-title">Internship </div> <!-- JOB TITLE  -->
+          <div class="company-description">
+          	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>   <!-- JOB DESCRIPTION  -->
+          </div>
+        </div>
+        
+      </div><!--Skill experience-->
+      
+      <div class="section-wrapper clearfix">
+      	<h3 class="section-title">Skills</h3>  <!-- YOUR SET OF SKILLS  -->
+        	<ul>
+        		<li class="skill-percentage">HTML / HTML5</li>
+        		<li class="skill-percentage">CSS / CSS3 / SASS / LESS</li>
+        		<li class="skill-percentage">Javascript</li>
+        		<li class="skill-percentage">Jquery</li>
+        		<li class="skill-percentage">Wordpress</li>
+        		<li class="skill-percentage">Photoshop</li>
+            
+        	</ul>
+        
+      </div>
+      
+      <div class="section-wrapper clearfix">
+        <h3 class="section-title">Hobbies</h3>  <!-- DESCRIPTION OF YOUR HOBBIES -->
+        <p>I'm an enthusiast of the digital world, where I delight in programming and 3D printing, always eager to learn and create. Video games offer a thrilling escape, while reading broadens my perspective. These hobbies, intertwined with technology and imagination, make my leisure time both exciting and enriching.</p>
+        
+        
+      </div>
+      
+  	</div>
+  </section>
+  
+  <div class="clearfix"></div>
+</div>
+</html>
