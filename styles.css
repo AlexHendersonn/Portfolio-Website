@@ -7,7 +7,10 @@
 .commerce{
   font-family: 'Montserrat', sans-serif;
 }
-
+.main-title{
+  text-align: center;
+  color: #ffffff;
+}
 
 #menu {
   transition: margin-left .5s;
@@ -154,7 +157,19 @@
     justify-content: center;
     flex-wrap: wrap;
   }
-
+  .background-img2{
+    background-image: url('Resources/background-img2.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
   .container{
     display: flex;
     justify-content: center;
@@ -162,8 +177,6 @@
     width: 100%;
     height: 78vh;
     background: #fff;
-    
-    
   }
   .music-player{
     background: #ffe0e5;
@@ -254,6 +267,20 @@
     padding: 0;
     box-sizing: border-box;
 }
+.background-img{
+  background-image: url('Resources/background-img.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 /*----E-Commerce Styles----*/
 .navbar{
     display:flex;
@@ -580,9 +607,56 @@ nav ul li a{
 	 height: 100%;
 }
  body {
-	 font-family: 'Open Sans', sans-serif;
 	 font-size: 16px;
 	 line-height: 1.5em;
+}
+.btn2{
+    
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #009193;
+  color: #ffffff;
+  padding: 8px 30px;
+  border-radius: 30px;
+  transition: background 0.5s;
+  width: 135px;
+  height: 25px;
+}
+.btn2:hover{
+  background: #0072b1;
+}
+.btn3{
+    
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #009193;
+  color: #ffffff;
+  padding: 8px 30px;
+  border-radius: 30px;
+  transition: background 0.5s;
+  width: 135px;
+  height: 25px;
+}
+.btn3:hover{
+  background: #6cc644;
+}
+.btn4{
+    
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #009193;
+  color: #ffffff;
+  padding: 8px 30px;
+  border-radius: 30px;
+  transition: background 0.5s;
+  width: 135px;
+  height: 25px;
+}
+.btn4:hover{
+  background: #3b5998;
 }
 
  .clearfix::after, .clearfix::before {
@@ -593,7 +667,7 @@ nav ul li a{
 	 clear: both;
 }
  .bold {
-	 color: #4a4e51;
+	 color: #009193;
 	 font-weight: 400;
 }
  .resume-wrapper {
@@ -605,10 +679,10 @@ nav ul li a{
 	 min-height: 600px;
 }
  .profile {
-	 background: #fff;
+	 background: #ffffff;
 	 width: 40%;
 	 float: left;
-	 color: #9099a0;
+	 color: #000000;
 }
  @media (max-width: 850px) {
 	 .profile {
@@ -623,7 +697,7 @@ nav ul li a{
 	 font-size: 2.5em;
 	 text-align: left;
 	 font-family: 'Varela Round', sans-serif;
-	 color: #4a4e51;
+	 color: #009193;
 	 text-transform: uppercase;
 	 line-height: 1em;
 	 padding-top: 40px;
@@ -727,7 +801,7 @@ nav ul li a{
 	 text-align: left;
 	 font-weight: 600;
 	 width: 40%;
-	 color: #4a4e51;
+	 color: #009193;
 }
  .profile .list-content {
 	 float: left;
@@ -763,11 +837,11 @@ nav ul li a{
 	 fill: rgb(0, 0, 0);
 }
  .experience {
-	 background: rgb(163, 163, 253);
+	 background: #009193;
 	 width: 60%;
 	 float: left;
 	 position: relative;
-	 color: #9099a0;
+	 color: #ffffff;
 	 font-weight: 300;
 	 min-height: 100%;
 	 min-height: 100vh;
@@ -778,7 +852,7 @@ nav ul li a{
 	}
 }
  .experience h3.experience-title {
-	 color: #6c9;
+	 color: rgb(255, 255, 255);
 	 text-align: left;
 	 text-transform: uppercase;
 	 font-size: 1.2em;
@@ -804,6 +878,7 @@ nav ul li a{
 	 text-align: left;
 	 padding-right: 5%;
 	 margin-bottom: 60px;
+   color: ;
 }
  @media (max-width: 450px) {
 	 .experience .job-wrapper {
@@ -812,7 +887,7 @@ nav ul li a{
 	}
 }
  .experience .experience-title {
-	 color: white;
+	 color: rgb(255, 255, 255);
 	 margin-bottom: 15px;
 }
  .section-padding {
@@ -867,7 +942,7 @@ nav ul li a{
  .section-wrapper .skill-percentage::before {
 	 content: "";
 	 height: 6px;
-	 background: rgb(150, 209, 11);
+	 background: rgb(177, 250, 8);
 	 position: absolute;
 	 margin-top: 3px;
 	 bottom: 0;
@@ -893,7 +968,7 @@ nav ul li a{
 	 animation: skill_5 0.6s ease;
 }
  .section-wrapper .skill-percentage:nth-child(6)::before {
-	 width: 70%;
+	 width: 40%;
 	 animation: skill_6 0.6s ease;
 }
  .section-wrapper .skill-percentage:nth-child(7)::before {
@@ -945,7 +1020,7 @@ nav ul li a{
 		 width: 0%;
 	}
 	 to {
-		 width: 70%;
+		 width: 40%;
 	}
 }
  @keyframes skill_7 {
