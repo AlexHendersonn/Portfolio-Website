@@ -158,7 +158,7 @@
     flex-wrap: wrap;
   }
   .background-img2{
-    background-image: url('background-img2.jpg');
+    background-image: url('Resources/background-img2.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -268,7 +268,7 @@
     box-sizing: border-box;
 }
 .background-img{
-  background-image: url('background-img.jpg');
+  background-image: url('Resources/background-img.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -284,15 +284,12 @@
 /*----E-Commerce Styles----*/
 .navbar{
     display:flex;
-    align-items:center;
     padding: 20px;
     justify-content: flex-end;
 }
 .nav{
     flex: 1;
     text-align: right;
-    
-    
 }
 nav ul{
     display: inline-block;
@@ -320,7 +317,7 @@ p{
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .col-2{
     flex-basis: 50%;
@@ -513,8 +510,10 @@ ul{
 }
 .menu-icon{
   width: 28px;
+  height: 30px;
   margin-left: 20px;
   display: none;
+  
 }
 /*------ All Products Page -----*/
 
@@ -575,12 +574,11 @@ nav ul li a{
   color:#fff;
 }
 .menu-icon{
-  transform: translate(-5px, -75px);
   display: block;
   cursor: pointer;
 }
 .cart-icon{
-  transform: translate(-5px, -78px);
+  transform: translate(0px, -4px);
 }
 .logo{
   transform: translate(-175px, -50px);
@@ -594,6 +592,9 @@ nav ul li a{
   }
   .col-2, .col-3, .col-4{
     flex-basis: 100%;
+  }
+  .cart-info{
+    display: none;
   }
 
 }
@@ -1075,4 +1076,123 @@ input:focus{
 .small-img-col{
   flex-basis: 24%;
   cursor: pointer;
+}
+/*-----Cart-----*/
+.cart-page{
+  margin: 80px auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.cart-info{
+  display: flex;
+  flex-wrap: wrap;
+}
+th{
+  text-align: left;
+  padding: 5px;
+  color: #ffffff;
+  background-color: #6658c4;
+  font-weight: normal;
+}
+td{
+  padding: 10px 5px;
+}
+td input{
+  width: 40px;
+  height: 30px;
+  padding: 5px;
+}
+td a{
+  color: #6658c4;
+  font-size: 12px;
+}
+td img{
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+.total-price{
+  display: flex;
+  justify-content: flex-end;
+}
+.total-price table{
+  border-top: 3px solid #6658c4;
+  width: 100%;
+  max-width: 400px;
+}
+wd:last-child{
+  text-align: right;
+}
+th:last-child{
+  text-align: right;
+}
+/*----Account Page-----*/
+.account-page{
+  padding: 50 0;
+  background: radial-gradient(#fff, #d4bafd);
+}
+.form-container{
+  background: #fff;
+  width: 300px;
+  height: 400px;
+  position: relative;
+  text-align: center;
+  padding: 20px 0;
+  margin: auto;
+  box-shadow: 0 0 20px 0px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.form-container span{
+  font-weight: bold;
+  padding: 0 10px;
+  color: #555;
+  cursor: pointer;
+  width: 100px;
+  display: inline-block;
+}
+.form-btn{
+  display: inline-block;
+}
+.form-container form{
+  max-width: 300px;
+  padding: 0 20px;
+  position: absolute;
+  top: 130px;
+  transition: transform 1s;
+}
+form input{
+  width: 80%;
+  height: 30px;
+  margin: 20px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+}
+form .btn{
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  margin: 10px 0;
+}
+form .btn:focus{
+  outline: none;
+}
+#LoginForm{
+  left: -300px;
+}
+#RegForm{
+  left: 0;
+}
+form a{
+  font-size: 12px;
+}
+#Indicator{
+  width: 100px;
+  border: none;
+  background: #6658c4;
+  height: 3px;
+  margin-top: 8px;
+  transform: translateX(100px);
+  transition: transform 1s;
 }
