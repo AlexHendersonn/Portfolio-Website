@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Puzzle</title>
+
+	
+	<script src=meta.js></script>
+	
+
+	<!-- style -->
+	<link rel="stylesheet" type="text/css" href="puzzle.css">
+
+	<!-- icons -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
+</head>
+<body touch-action=none unresolved>
+
+<!-- Side Navigation -->
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">Home</a>
+    <a href="/puzzle/puzzle.html">Puzzles</a>
+    <a href="/games.html">Solitaire</a>
+    <a href="#">Settings</a>
+    <a href="#">Contact</a>
+</div>
+
+<!-- Content Section -->
+<div id="content-wrap">
+    <nav class="navbar">
+        <button class="menu-btn" onclick="openNav()">&#9776;</button>
+        <h1>Puzzles</h1>
+        <button id="morePuzzlesBtn" class="more-puzzles-btn">
+			<i class="fas fa-puzzle-piece"></i>
+			More Puzzles!
+		</button>
+    </nav>
+
+	<div id="puzzleModal" style="display: none;" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h2>Choose a Puzzle</h2>
+			
+			<!-- Puzzle Grid -->
+			<div class="puzzle-grid">
+				<div class="puzzle-card">
+					<img src="/assets/puzzle/MountainLake.png" alt="Mountain Lake">
+					<h3>Mountain Lake</h3>
+					<p>Difficulty: Easy</p>
+					<p>Size: 4x4</p>
+					<button type="button" onclick="startMountainLakePuzzle()">Start Mountain Lake Puzzle</button>
+				</div>
+				<div class="puzzle-card">
+					<img src="/assets/puzzle/Sunset.PNG" alt="City Sunset">
+					<h3>City Sunset</h3>
+					<p>Difficulty: Medium</p>
+					<p>Size: 5x5</p>
+					<button type="button" onclick="startSunsetPuzzle()">Start Sunset Puzzle</button>
+				</div>
+				<div class="puzzle-card">
+					<img src="/assets/puzzle/ForestPath.png" alt="Forest Path">
+					<h3>Forest Path</h3>
+					<p>Difficulty: Hard</p>
+					<p>Size: 6x6</p>
+					<button type="button" onclick="startForestPuzzle()">Start Forest Path Puzzle</button>
+				</div>
+			</div>
+	
+			<!-- Puzzle generator -->
+			<div class="section container">
+				<h2>Generate your puzzle</h2>
+				<p hidden>Make your own puzzle and share it with your friends!</p>
+				<input type="text" placeholder="Image link" id=url> <input type="number" placeholder="Width" min=0 id=cols> x <input type="number" placeholder="Height" min=0 id=rows>
+				<br><br>
+				<div>
+					<button type="button" onclick="window.location.href = generate()">Generate</button>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="ui disabled">
+
+		<!-- ending -->
+		<div class="ui-popup-container disabled">
+			<div class=ui-popup>
+				<!-- Thank you for playing -->
+				<div class=section>
+					<h1>Thank you for playing!</h1>
+					
+				</div>
+				<!-- Puzzle generator -->
+				<div class="section container">
+					<h2>Generate your puzzle</h2>
+					<p hidden>Make your own puzzle and share it with your friends!</p>
+					<input type="text" placeholder="Image link" id=url> <input type="number" placeholder="Width" min=0 id=cols> x <input type="number" placeholder="Height" min=0 id=rows>
+					<br><br>
+					<div>
+						<button type="button" onclick="window.location.href = generate()">Generate</button>
+						
+						
+					</div>
+				</div>
+				<!-- Play again -->
+				<div class=section>
+					<a id=again><button type="button">Play again</button></a>
+					
+				</div>
+			</div>
+		</div>
+
+		<!-- follow, share, (generate, share), (zombiecraft link, discord), play again -->
+
+		<!-- functionalities -->
+		<div class=ui-container>
+			<div class=tooltip>
+				<span class=tooltip-content>Preview</span>
+				<div class=functionality onclick="hint()">
+					<i class="fas fa-eye"></i>
+				</div>
+			</div>
+			<div class=tooltip>
+				<span class=tooltip-content>Verify</span>
+				<div class=functionality onclick="verify()">
+					<i class="fas fa-check"></i>
+				</div>
+			</div>
+			<div class=tooltip>
+				<span class=tooltip-content>Fullscreen</span>
+				<div class=functionality onclick="toggleFullscreen(this)">
+					<i class="fas fa-expand"></i>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+
+	<!-- scripts -->
+	<script>
+        // Functions to handle sidebar navigation
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+	<script src=plugins/clipboard.js></script>
+	<script src=plugins/transform.js></script>
+	<script src=plugins/cors.js></script>
+	<script src=jigsaw.js></script>
+	<script src=script.js></script>
+	<script>
+		// Modal functionality
+		const modal = document.getElementById("puzzleModal");
+		const btn = document.getElementById("morePuzzlesBtn");
+		const span = document.getElementsByClassName("close")[0];
+
+		btn.onclick = function() {
+			modal.style.display = "block";
+		}
+
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+
+		function startPuzzle(type) {
+			// Add your puzzle starting logic here
+			console.log(`Starting ${type} puzzle`);
+			modal.style.display = "none";
+		}
+
+		function generateCustomPuzzle() {
+			const imageUrl = document.getElementById("customImageUrl").value;
+			const width = document.getElementById("customWidth").value;
+			const height = document.getElementById("customHeight").value;
+			
+			// Add your custom puzzle generation logic here
+			console.log(`Generating puzzle with image: ${imageUrl}, size: ${width}x${height}`);
+			modal.style.display = "none";
+		}
+
+		function startMountainLakePuzzle() {
+			document.querySelector('#url').value = '/assets/puzzle/MountainLake.png';
+			document.querySelector('#cols').value = '4';
+			document.querySelector('#rows').value = '4';
+			window.location.href = generate();
+		}
+		function startSunsetPuzzle() {
+			document.querySelector('#url').value = '/assets/puzzle/Sunset.PNG';
+			document.querySelector('#cols').value = '5';
+			document.querySelector('#rows').value = '5';
+			window.location.href = generate();
+		}
+		function startForestPuzzle() {
+			// First set the form values
+			document.querySelector('#url').value = '/assets/puzzle/ForestPath.png';
+			document.querySelector('#cols').value = '6';
+			document.querySelector('#rows').value = '6';
+			
+			// Then use the generate function from script.js to create and navigate to the URL
+			window.location.href = generate();
+		}
+	</script>
+</body>
+</html>
