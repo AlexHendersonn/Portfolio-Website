@@ -401,6 +401,9 @@ cursor: pointer;
         overflow-y: none;  /* Allow scrolling within game container if needed */
         
     }
+    #top-area {
+        margin-bottom: 100px;
+    }
 
     .pile, .foundation-pile, .tableau-pile, .card {
         width: 40px;  /* Smaller cards for mobile */
