@@ -398,7 +398,7 @@ cursor: pointer;
         -moz-user-select: none;
         -ms-user-select: none;
         touch-action: none; /* Prevents ALL default touch behaviors */
-        overflow-y: auto;  /* Allow scrolling within game container if needed */
+        overflow-y: none;  /* Allow scrolling within game container if needed */
         -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
 
