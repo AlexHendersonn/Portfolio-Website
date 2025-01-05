@@ -403,8 +403,8 @@ cursor: pointer;
     }
 
     .pile, .foundation-pile, .tableau-pile, .card {
-        width: 100px;  /* Smaller cards for mobile */
-        height: 140px; /* Maintain aspect ratio */
+        width: 60px;  /* Smaller cards for mobile */
+        height: 100px; /* Maintain aspect ratio */
     }
 
     .tableau-area {
