@@ -1,6 +1,10 @@
 class SolitaireGame {
     constructor() {
         this.autoMoveEnabled = false;
+        this.touchStartPos = null;
+        this.touchStartTime = null;
+        this.selectedCard = null;
+        this.isTouchDevice = 'ontouchstart' in window;
         this.initializeGame();
         this.setupEventListeners();
     }
@@ -57,17 +61,26 @@ class SolitaireGame {
     setupEventListeners() {
         document.getElementById('deck').addEventListener('click', () => this.drawCard());
         
-        // Setup drag and drop for all cards
-        document.addEventListener('dragstart', (e) => this.handleDragStart(e));
-        document.addEventListener('dragend', (e) => this.handleDragEnd(e));
-        document.addEventListener('dragover', (e) => this.handleDragOver(e));
-        document.addEventListener('drop', (e) => this.handleDrop(e));
-        // Add restart button listeners
+        document.getElementById('deck').addEventListener('click', () => this.drawCard());
+        
+        if (this.isTouchDevice) {
+            // Touch event handlers
+            document.addEventListener('touchstart', (e) => this.handleTouchStart(e));
+            document.addEventListener('touchmove', (e) => this.handleTouchMove(e));
+            document.addEventListener('touchend', (e) => this.handleTouchEnd(e));
+        } else {
+            // Mouse event handlers (keep existing)
+            document.addEventListener('dragstart', (e) => this.handleDragStart(e));
+            document.addEventListener('dragend', (e) => this.handleDragEnd(e));
+            document.addEventListener('dragover', (e) => this.handleDragOver(e));
+            document.addEventListener('drop', (e) => this.handleDrop(e));
+        }
+
+        // Keep other existing listeners
         document.querySelectorAll('.restart-btn').forEach(button => {
             button.addEventListener('click', () => this.restartGame());
         });
 
-        // Add auto-move toggle listener
         document.getElementById('auto-move-toggle').addEventListener('change', (e) => {
             this.autoMoveEnabled = e.target.checked;
             if (this.autoMoveEnabled) {
@@ -200,17 +213,152 @@ class SolitaireGame {
             this.deck = [...this.waste].reverse();
             this.waste = [];
             this.deck.forEach(card => card.faceUp = false);
+            this.render();
         } else {
             const card = this.deck.pop();
             card.faceUp = true;
-            this.waste.push(card);
             
+            // Get positions
+            const deckElement = document.getElementById('deck');
+            const wasteElement = document.getElementById('waste');
+            const deckRect = deckElement.getBoundingClientRect();
+            const wasteRect = wasteElement.getBoundingClientRect();
+
+            // Create card element for animation
+            const cardElement = document.createElement('div');
+            cardElement.className = 'card card-flip';
+            cardElement.style.position = 'fixed';
+            cardElement.style.left = `${deckRect.left}px`;
+            cardElement.style.top = `${deckRect.top}px`;
+            cardElement.style.width = `${deckRect.width}px`;
+            cardElement.style.height = `${deckRect.height}px`;
+            cardElement.style.zIndex = '1000';
+
+            // Create back face
+            const backFace = document.createElement('div');
+            backFace.className = 'card-face back';
+            const backImg = document.createElement('img');
+            backImg.src = 'assets/cards/card_back.png';
+            backImg.alt = 'Card back';
+            backFace.appendChild(backImg);
+            cardElement.appendChild(backFace);
+
+            // Create front face
+            const frontFace = document.createElement('div');
+            frontFace.className = 'card-face front';
+            const frontImg = document.createElement('img');
+            frontImg.src = `assets/cards/${card.value.toLowerCase()}_of_${card.suit}.png`;
+            frontImg.alt = `${card.value} of ${card.suit}`;
+            frontFace.appendChild(frontImg);
+            cardElement.appendChild(frontFace);
+
+            document.body.appendChild(cardElement);
+
+            // Flip animation
+            await new Promise(resolve => {
+                setTimeout(() => {
+                    cardElement.classList.add('flipping');
+                    setTimeout(resolve, 300);
+                }, 50);
+            });
+
+            // Move to waste pile
+            cardElement.classList.add('moving-to-waste');
+            await new Promise(resolve => {
+                cardElement.style.left = `${wasteRect.left}px`;
+                cardElement.style.top = `${wasteRect.top}px`;
+                cardElement.addEventListener('transitionend', resolve, { once: true });
+            });
+
+            // Clean up and update game state
+            cardElement.remove();
+            this.waste.push(card);
+            this.render();
+
+            // Check for auto-moves
             if (this.autoMoveEnabled) {
                 await this.performAutoMoves();
             }
         }
-        this.render();
     }
+
+    handleTouchStart(e) {
+        const touch = e.touches[0];
+        const cardElement = touch.target.closest('.card');
+        
+        if (cardElement && cardElement.dataset.id) {
+            e.preventDefault();
+            this.touchStartPos = { x: touch.clientX, y: touch.clientY };
+            this.touchStartTime = Date.now();
+            
+            const [pile, index] = this.findCard(cardElement.dataset.id);
+            const card = this.getCardFromPile(pile, cardElement.dataset.id);
+            
+            if (card && card.faceUp) {
+                this.selectedCard = {
+                    element: cardElement,
+                    card: card,
+                    pile: pile,
+                    index: index,
+                    originalPos: cardElement.getBoundingClientRect()
+                };
+                
+                cardElement.style.zIndex = '1000';
+            }
+        }
+    }
+
+    handleTouchMove(e) {
+        if (this.selectedCard) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const deltaX = touch.clientX - this.touchStartPos.x;
+            const deltaY = touch.clientY - this.touchStartPos.y;
+            
+            this.selectedCard.element.style.transform = 
+                `translate(${deltaX}px, ${deltaY}px)`;
+            
+            // Highlight valid drop targets
+            const targetElement = this.getTouchTarget(touch);
+            this.clearDropTargets();
+            if (targetElement && this.isValidMove(this.selectedCard.card, targetElement)) {
+                targetElement.classList.add('valid-drop-target');
+            }
+        }
+    }
+
+    async handleTouchEnd(e) {
+        if (this.selectedCard) {
+            const touch = e.changedTouches[0];
+            const targetElement = this.getTouchTarget(touch);
+            
+            if (targetElement && this.isValidMove(this.selectedCard.card, targetElement)) {
+                // Valid drop
+                const cards = this.selectedCard.pile.splice(this.selectedCard.index);
+                this.getTargetPileArray(targetElement).push(...cards);
+                
+                if (this.selectedCard.pile.length > 0) {
+                    this.selectedCard.pile[this.selectedCard.pile.length - 1].faceUp = true;
+                }
+            }
+            
+            this.clearDropTargets();
+            this.render();
+            
+            if (this.autoMoveEnabled) {
+                await this.performAutoMoves();
+            }
+            
+            this.checkWinCondition();
+            this.selectedCard = null;
+        }
+    }
+
+    getTouchTarget(touch) {
+        const element = document.elementFromPoint(touch.clientX, touch.clientY);
+        return element?.closest('.tableau-pile, .foundation-pile');
+    }
+
 
     handleDragStart(e) {
         const cardElement = e.target.closest('.card');
