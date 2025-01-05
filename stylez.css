@@ -56,6 +56,7 @@ body {
 
 .tableau-pile {
     width: 100px;
+    min-height: 140px;
     border: 2px dashed #fff;
     border-radius: 5px;
     position: relative;
@@ -410,6 +411,8 @@ cursor: pointer;
         gap: 5px;  /* Smaller gaps between piles */
         
     }
+    .tableau-pile {
+        min-height: 70px;
 
     .foundation-area {
         gap: 5px;
