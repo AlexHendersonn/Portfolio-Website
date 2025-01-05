@@ -420,9 +420,7 @@ cursor: pointer;
         gap: 5px;
     }
 
-    .card {
-        transform-origin: top left;
-    }
+    
 
     .card, .card img {
         -webkit-touch-callout: none; /* iOS Safari */
