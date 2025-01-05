@@ -56,7 +56,6 @@ body {
 
 .tableau-pile {
     width: 100px;
-    min-height: 140px;
     border: 2px dashed #fff;
     border-radius: 5px;
     position: relative;
