@@ -413,7 +413,8 @@ cursor: pointer;
     }
     .tableau-pile {
         min-height: 70px;
-
+    }
+        
     .foundation-area {
         gap: 5px;
     }
