@@ -398,6 +398,15 @@ cursor: pointer;
         transform-origin: top left;
     }
 
+    .card, .card img {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none;   /* Safari */
+        -khtml-user-select: none;    /* Konqueror HTML */
+        -moz-user-select: none;      /* Firefox */
+        -ms-user-select: none;       /* Internet Explorer/Edge */
+        -webkit-user-drag: none;     /* Safari */
+    }
+
     /* Adjust card spacing in tableau */
     .tableau-pile .card {
         transform: translateY(15px); /* Smaller spacing between stacked cards */
