@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/stylez.css">
+</head>
+<body>
+    <!-- Side Navigation -->
+    <div id="mySidenav" class="sidenav">
+       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+       <a href="/index.html">Home</a>
+       <a href="/puzzle/puzzle.html">Puzzles</a>
+       <a href="/solitaire.html">Solitaire</a>
+       <a href="/sudoku.html">Sudoku</a>
+      
+   </div>
+   
+   <!-- Content Section -->
+   <div id="content-wrap">
+       <nav class="navbar">
+           <button class="menu-btn" onclick="openNav()">&#9776;</button>
+           <h1>Solitaire</h1>
+           
+       </nav>
+    <div class="game-container">
+        <div class="controls">
+            <select id="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium" selected>Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <button onclick="newGame()">New Game</button>
+            <div class="timer" id="timer">00:00</div>
+        </div>
+        <div id="board" class="board"></div>
+        <div class="number-pad">
+            <button class="number-btn" onclick="inputNumber(1)">1</button>
+            <button class="number-btn" onclick="inputNumber(2)">2</button>
+            <button class="number-btn" onclick="inputNumber(3)">3</button>
+            <button class="number-btn" onclick="inputNumber(4)">4</button>
+            <button class="number-btn" onclick="inputNumber(5)">5</button>
+            <button class="number-btn" onclick="inputNumber(6)">6</button>
+            <button class="number-btn" onclick="inputNumber(7)">7</button>
+            <button class="number-btn" onclick="inputNumber(8)">8</button>
+            <button class="number-btn" onclick="inputNumber(9)">9</button>
+        </div>
+    </div>
+    
+    <div id="congratsModal" class="modal">
+        <div class="modal-content">
+            <h2>Congratulations!</h2>
+            <p id="modalMessage"></p>
+            <button class="close-modal" onclick="closeModal()">Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        let board = Array(9).fill().map(() => Array(9).fill(0));
+        let solution = [];
+        let selected = { row: -1, col: -1 };
+        let startTime = null;
+        let timerInterval = null;
+
+        function updateTimer() {
+            if (!startTime) return;
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
+            const seconds = (elapsed % 60).toString().padStart(2, '0');
+            document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+        }
+
+        function startTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+            startTime = Date.now();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function isValid(board, row, col, num) {
+            for (let x = 0; x < 9; x++) {
+                if (board[row][x] === num) return false;
+            }
+            
+            for (let x = 0; x < 9; x++) {
+                if (board[x][col] === num) return false;
+            }
+            
+            const boxRow = Math.floor(row / 3) * 3;
+            const boxCol = Math.floor(col / 3) * 3;
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (board[boxRow + i][boxCol + j] === num) return false;
+                }
+            }
+            
+            return true;
+        }
+
+        function fillBoard(board) {
+            const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            
+            for (let row = 0; row < 9; row++) {
+                for (let col = 0; col < 9; col++) {
+                    if (board[row][col] === 0) {
+                        const shuffled = [...nums].sort(() => Math.random() - 0.5);
+                        
+                        for (let num of shuffled) {
+                            if (isValid(board, row, col, num)) {
+                                board[row][col] = num;
+                                if (fillBoard(board)) return true;
+                                board[row][col] = 0;
+                            }
+                        }
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        function generateSudoku() {
+            const difficulty = document.getElementById('difficulty').value;
+            const cellsToRemove = {
+                'easy': 30,
+                'medium': 40,
+                'hard': 50
+            }[difficulty];
+
+            const solvedBoard = Array(9).fill().map(() => Array(9).fill(0));
+            fillBoard(solvedBoard);
+            solution = solvedBoard.map(row => [...row]);
+
+            board = solution.map(row => [...row]);
+            let removed = 0;
+            while (removed < cellsToRemove) {
+                const row = Math.floor(Math.random() * 9);
+                const col = Math.floor(Math.random() * 9);
+                if (board[row][col] !== 0) {
+                    board[row][col] = 0;
+                    removed++;
+                }
+            }
+            renderBoard();
+        }
+
+        function renderBoard() {
+            const boardElement = document.getElementById('board');
+            boardElement.innerHTML = '';
+            
+            for (let row = 0; row < 9; row++) {
+                for (let col = 0; col < 9; col++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    if ((col + 1) % 3 === 0 && col < 8) cell.className += ' border-right';
+                    if ((row + 1) % 3 === 0 && row < 8) cell.className += ' border-bottom';
+                    if (row === selected.row && col === selected.col) cell.className += ' selected';
+                    
+                    if (board[row][col] !== 0) {
+                        cell.textContent = board[row][col];
+                        if (solution[row][col] === board[row][col]) {
+                            cell.className += ' initial';
+                        } else {
+                            cell.className += ' user-input';
+                        }
+                    }
+                    
+                    cell.onclick = () => selectCell(row, col);
+                    boardElement.appendChild(cell);
+                }
+            }
+        }
+
+        function selectCell(row, col) {
+            if (solution[row][col] === board[row][col]) return;
+            selected = { row, col };
+            renderBoard();
+        }
+
+        function inputNumber(num) {
+            if (selected.row === -1 || selected.col === -1) return;
+            
+            board[selected.row][selected.col] = num;
+            renderBoard();
+
+            let complete = true;
+            for (let i = 0; i < 9; i++) {
+                for (let j = 0; j < 9; j++) {
+                    if (board[i][j] !== solution[i][j]) {
+                        complete = false;
+                        break;
+                    }
+                }
+                if (!complete) break;
+            }
+            
+            if (complete) {
+                clearInterval(timerInterval);
+                const finalTime = document.getElementById('timer').textContent;
+                document.getElementById('modalMessage').textContent = `You've completed the puzzle in ${finalTime}!`;
+                document.getElementById('congratsModal').classList.add('show');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('congratsModal').classList.remove('show');
+            newGame();
+        }
+
+        function newGame() {
+            generateSudoku();
+            selected = { row: -1, col: -1 };
+            startTimer();
+        }
+
+        // Handle keyboard input
+        document.addEventListener('keydown', (e) => {
+            if (e.key >= '1' && e.key <= '9') {
+                inputNumber(parseInt(e.key));
+            }
+        });
+
+        // Start new game on load
+        newGame();
+    </script>
+</body>
+</html>
